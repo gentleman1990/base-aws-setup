@@ -1,0 +1,2 @@
+# base-aws-setup
+DNA
