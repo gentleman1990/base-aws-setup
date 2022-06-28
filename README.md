@@ -1,6 +1,11 @@
 ## Prerequisites
 
- 
+### S3 bucket 
+- dna-base-aws-setup
+
+### SSH EC2 key
+- dna-base-ssh-key
+
 ### IAM user with listed privileges
 - AmazonEC2FullAccess
 - AmazonS3FullAccess
@@ -9,4 +14,4 @@
 - IAMReadOnlyAccess
 - AmazonRoute53FullAccess 
 
-Creation of that user, roles nad policies can be also migrated to terraform, but due to lack of time I decide to create it manually.
+Creation of all prerequisites can be also migrated to terraform, but due to lack of time I decide to create it manually.
