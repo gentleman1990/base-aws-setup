@@ -1,4 +1,9 @@
 //TODO I am start feeling that it is some kind of over engineering :P Maybe fargate will be enough there, maybe I can even use module for fargate from terraform registry
+locals {
+  user_data = {
+    cluster_name = aws_ecs_cluster.dna.name
+  }
+}
 
 data "aws_ami" "ecs" {
   most_recent = true
@@ -28,7 +33,7 @@ resource "aws_launch_configuration" "ecs" {
     create_before_destroy = true
   }
 
-//  user_data = file("${path.module}/scripts/user-data.sh")
+  user_data = templatefile("${path.module}/scripts/user-data.sh", local.user_data)
 }
 
 resource "aws_autoscaling_group" "ecs" {
@@ -43,10 +48,10 @@ resource "aws_autoscaling_group" "ecs" {
   lifecycle {
     create_before_destroy = true
   }
-
-  tags = {
-    owner = "DNA Team"
-    deployer = "Jakub Socha"
-    stage = "test"
-  }
+//TODO looks like tags are deprecated, so I decide to skip it for for and come back to it later
+//  tags = {
+//    owner = "DNA Team"
+//    deployer = "Jakub Socha"
+//    stage = "test"
+//  }
 }

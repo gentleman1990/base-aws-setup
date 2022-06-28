@@ -19,5 +19,5 @@ module "vpc" {
   }
 }
 
-
+//TODO SG that has been created in this module has been manually updated by adding inbound rules to open 80 and 22 port. Migrate it to terraform!
 
