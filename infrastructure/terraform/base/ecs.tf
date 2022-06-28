@@ -1,7 +1,3 @@
-data "aws_iam_role" "ecs" {
-  name = "aws_iam_role"
-}
-
 resource "aws_ecs_cluster" "dna" {
   name = "simple-app"
 }

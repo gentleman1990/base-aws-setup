@@ -5,6 +5,10 @@ locals {
   }
 }
 
+data "aws_iam_role" "ecs" {
+  name = "dns-ecs-role"
+}
+
 data "aws_ami" "ecs" {
   most_recent = true
 
@@ -21,11 +25,21 @@ data "aws_ami" "ecs" {
   owners = ["amazon"]
 }
 
+resource "aws_iam_instance_profile" "ecs" {
+  name_prefix = "${aws_ecs_cluster.dna.name}-"
+  role        = data.aws_iam_role.ecs.name
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_launch_configuration" "ecs" {
   name_prefix   = "${aws_ecs_cluster.dna.name}-launch-cfg-"
   image_id      = data.aws_ami.ecs.id
   instance_type = "t2.micro"
   key_name      = "dna-base-ssh-key"
+  iam_instance_profile = aws_iam_instance_profile.ecs.name
 
   security_groups = [module.vpc.default_security_group_id]
 
