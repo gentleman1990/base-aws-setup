@@ -13,9 +13,9 @@ module "vpc" {
   //  enable_vpn_gateway = true
 
   tags = {
-    owner = "DNA Team"
+    owner    = "DNA Team"
     deployer = "Jakub Socha"
-    stage = "test"
+    stage    = "test"
   }
 }
 

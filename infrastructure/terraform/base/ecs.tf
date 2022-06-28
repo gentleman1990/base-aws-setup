@@ -1,12 +1,16 @@
+data "aws_iam_role" "ecs" {
+  name = "aws_iam_role"
+}
+
 resource "aws_ecs_cluster" "dna" {
   name = "simple-app"
 }
 
 resource "aws_ecs_service" "dna" {
-  name = "simple-service"
-  cluster = aws_ecs_cluster.dna.name
+  name            = "simple-service"
+  cluster         = aws_ecs_cluster.dna.name
   task_definition = aws_ecs_task_definition.simple_app.arn
-  desired_count = 2
+  desired_count   = 2
 }
 
 //TODO template can be further parametrized to make it more generic and usable for other services or even as module
@@ -19,9 +23,9 @@ resource "aws_ecs_task_definition" "simple_app" {
   }
 
   tags = {
-    owner = "DNA Team"
+    owner    = "DNA Team"
     deployer = "Jakub Socha"
-    stage = "test"
+    stage    = "test"
   }
 }
 

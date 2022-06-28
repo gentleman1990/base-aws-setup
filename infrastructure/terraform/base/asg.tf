@@ -23,11 +23,11 @@ data "aws_ami" "ecs" {
 
 resource "aws_launch_configuration" "ecs" {
   name_prefix   = "${aws_ecs_cluster.dna.name}-launch-cfg-"
-  image_id      =  data.aws_ami.ecs.id
+  image_id      = data.aws_ami.ecs.id
   instance_type = "t2.micro"
   key_name      = "dna-base-ssh-key"
 
-  security_groups      = [module.vpc.default_security_group_id]
+  security_groups = [module.vpc.default_security_group_id]
 
   lifecycle {
     create_before_destroy = true
@@ -48,10 +48,10 @@ resource "aws_autoscaling_group" "ecs" {
   lifecycle {
     create_before_destroy = true
   }
-//TODO looks like tags are deprecated, so I decide to skip it for for and come back to it later
-//  tags = {
-//    owner = "DNA Team"
-//    deployer = "Jakub Socha"
-//    stage = "test"
-//  }
+  //TODO looks like tags are deprecated, so I decide to skip it for for and come back to it later
+  //  tags = {
+  //    owner = "DNA Team"
+  //    deployer = "Jakub Socha"
+  //    stage = "test"
+  //  }
 }
