@@ -5,6 +5,7 @@ locals {
   }
 }
 
+//TODO this IAM role should be also created via terraform
 data "aws_iam_role" "ecs" {
   name = "dns-ecs-role"
 }
@@ -62,10 +63,10 @@ resource "aws_autoscaling_group" "ecs" {
   lifecycle {
     create_before_destroy = true
   }
-  //TODO looks like tags are deprecated, so I decide to skip it for for and come back to it later
-  //  tags = {
-  //    owner = "DNA Team"
-  //    deployer = "Jakub Socha"
-  //    stage = "test"
-  //  }
+
+  tag {
+    key                 = "Name"
+    value               = aws_ecs_cluster.dna.name
+    propagate_at_launch = true
+  }
 }

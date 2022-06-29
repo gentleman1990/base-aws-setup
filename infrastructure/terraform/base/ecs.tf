@@ -24,10 +24,3 @@ resource "aws_ecs_task_definition" "simple_app" {
     stage    = "test"
   }
 }
-
-//ECS cluster
-//ECS Service
-//ECS task definition
-//Fargate vs EC2? Terraform registry for Fargate?
-
-//Rotue53 -> terraform registry?
