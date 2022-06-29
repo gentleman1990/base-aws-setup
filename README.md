@@ -18,6 +18,7 @@ Simple service comes from yeasy/simple-web has been deployed and can be publicly
 - AmazonVPCFullAccess
 - IAMReadOnlyAccess
 - AmazonRoute53FullAccess 
+- CloudFrontFullAccess
 
 ### IAM role for ECS (the scope of the privileges need to be cut down!)
 - AmazonEC2FullAccess
