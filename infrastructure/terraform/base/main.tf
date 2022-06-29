@@ -12,6 +12,16 @@ module "vpc" {
   //  enable_nat_gateway = true
   //  enable_vpn_gateway = true
 
+//TODO SG that has been created in this module has been manually updated by adding inbound rules to open 80 and 22 port. Migrate it to terraform!
+//  default_security_group_ingress = [
+//    {
+//      from_port   = 80
+//      to_port     = 80
+//      protocol    = "-1"
+//      cidr_blocks = ["0.0.0.0/0"]
+//    }
+//  ]
+
   tags = {
     owner    = "DNA Team"
     deployer = "Jakub Socha"
@@ -19,5 +29,5 @@ module "vpc" {
   }
 }
 
-//TODO SG that has been created in this module has been manually updated by adding inbound rules to open 80 and 22 port. Migrate it to terraform!
 
+//TODO I am not sure if I understand correctly how NAT gateway is working, but I believe it is possible to deploy application within private subnets, NAT in public and route the traffic without expose application via public IP address
